@@ -3,7 +3,7 @@ using System.Text.Json;
 using CCS.Rosetta.Api;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace CSS.Rosetta.Test;
+namespace CSS.Rosetta.Test.Projects;
 
 public class CreateProjectFeature : IClassFixture<WebApplicationFactory<Program>>
 {

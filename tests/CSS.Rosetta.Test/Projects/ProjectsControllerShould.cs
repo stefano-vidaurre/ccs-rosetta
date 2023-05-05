@@ -1,7 +1,7 @@
 ﻿using CCS.Rosetta.Api.Projects;
 using NSubstitute;
 
-namespace CSS.Rosetta.Test;
+namespace CSS.Rosetta.Test.Projects;
 
 public class ProjectsControllerShould
 {
