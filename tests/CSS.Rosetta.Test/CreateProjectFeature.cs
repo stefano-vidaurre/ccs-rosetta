@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using CCS.Rosetta.Api;
 using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace CSS.Rosetta.Test;

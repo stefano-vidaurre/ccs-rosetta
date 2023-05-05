@@ -24,4 +24,7 @@ app.MapControllers();
 
 app.Run();
 
-public partial class Program { }
+namespace CCS.Rosetta.Api
+{
+    public partial class Program { }
+}
