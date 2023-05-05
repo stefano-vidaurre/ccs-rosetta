@@ -16,6 +16,8 @@ public class ProjectsController : ControllerBase
     [HttpPost]
     public async Task Post(ProjectCrateDto request)
     {
-        throw new NotImplementedException();
+        var project = new Project(request.Name, request.Description);
+        
+        await _repository.Add(project);
     }
 }

@@ -25,7 +25,7 @@ public class ProjectsControllerShould
 
         await _controller.Post(request);
 
-        var project = new Project("my-project", "A description.");
-        await _repository.Received().Add(project);
+        await _repository.Received().Add(Arg.Is<Project>(project =>
+            project.Name == "my-project" && project.Description == "A description."));
     }
 }
