@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Info", "00 - Info", "{E4EBF1D7-551E-4324-ADCA-C144C7BD5931}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - UI", "01 - UI", "{70CB23D4-6F73-4AE4-92BC-4595AECA0CD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Api", "02 - Api", "{4B5ED8E4-C4B1-476D-9739-8829F80EC0C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Tests", "03 - Tests", "{014C09CA-3250-44DE-88D5-4E4A73B4A229}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCS.Rosetta.Api", "src\CCS.Rosetta.Api\CCS.Rosetta.Api.csproj", "{48F2BB99-B61F-4EB7-A3E4-975F1078A300}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS.Rosetta.Test", "tests\CSS.Rosetta.Test\CSS.Rosetta.Test.csproj", "{C3EAB091-AFA5-46C5-A2C3-847496EC96AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48F2BB99-B61F-4EB7-A3E4-975F1078A300} = {4B5ED8E4-C4B1-476D-9739-8829F80EC0C5}
+		{C3EAB091-AFA5-46C5-A2C3-847496EC96AA} = {014C09CA-3250-44DE-88D5-4E4A73B4A229}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48F2BB99-B61F-4EB7-A3E4-975F1078A300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F2BB99-B61F-4EB7-A3E4-975F1078A300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F2BB99-B61F-4EB7-A3E4-975F1078A300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F2BB99-B61F-4EB7-A3E4-975F1078A300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3EAB091-AFA5-46C5-A2C3-847496EC96AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3EAB091-AFA5-46C5-A2C3-847496EC96AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3EAB091-AFA5-46C5-A2C3-847496EC96AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3EAB091-AFA5-46C5-A2C3-847496EC96AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

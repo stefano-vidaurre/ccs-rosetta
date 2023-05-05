@@ -1,2 +1,2 @@
-# ccs-rosetta
+# CSS.Rosetta
 A small translation service 
