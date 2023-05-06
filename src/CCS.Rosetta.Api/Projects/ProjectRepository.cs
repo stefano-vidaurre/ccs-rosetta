@@ -18,6 +18,6 @@ public class ProjectRepository : IProjectRepository
 
     public Task<IEnumerable<Project>> GetAll()
     {
-        throw new NotImplementedException();
+        return Task.FromResult(Enumerable.Empty<Project>());
     }
 }
