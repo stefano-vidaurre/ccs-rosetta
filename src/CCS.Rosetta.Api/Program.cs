@@ -1,3 +1,8 @@
+using System.Data.Common;
+using CCS.Rosetta.Api.Projects;
+using Dapper;
+using Microsoft.Data.Sqlite;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +11,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var connection = new SqliteConnection("Data Source=./database.db");
+connection.Open();
+connection.Execute("CREATE TABLE IF NOT EXISTS Projects (Name VARCHAR(255) PRIMARY KEY, Description TEXT);");
+connection.Dispose();
+
+builder.Services.AddScoped<DbConnection, SqliteConnection>(_ =>
+{
+    var connection = new SqliteConnection("Data Source=./database.db");
+    connection.Open();
+    return connection;
+});
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
 var app = builder.Build();
 

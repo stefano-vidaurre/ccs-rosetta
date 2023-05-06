@@ -38,7 +38,7 @@ public class CreateProjectFeature : IClassFixture<WebApplicationFactory<Program>
 
     private async Task WhenCreateANewProject(string projectProperties)
     {
-        var request = new StringContent(projectProperties, Encoding.UTF32, "application/json");
+        var request = new StringContent(projectProperties, Encoding.UTF8, "application/json");
         var response = await _client.PostAsync("/", request);
         response.EnsureSuccessStatusCode();
     }
