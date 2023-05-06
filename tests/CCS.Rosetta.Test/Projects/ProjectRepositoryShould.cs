@@ -46,7 +46,7 @@ public class ProjectRepositoryShould : IDisposable
     {
         var project = new Project("my-project", "A description.");
         
-        _repository.Add(project);
+        await _repository.Add(project);
         
         var result = await _repository.GetAll();
         result.Should().Contain(p => p.Name == project.Name && p.Description == project.Description);

@@ -14,7 +14,7 @@ public class ProjectRepository : IProjectRepository
 
     public Task Add(Project project)
     {
-        throw new NotImplementedException();
+        return _connection.ExecuteAsync($"INSERT INTO Projects ('Name', 'Description') VALUES ('{project.Name}', '{project.Description}');");
     }
 
     public Task<IEnumerable<Project>> GetAll()
