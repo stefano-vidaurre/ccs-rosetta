@@ -1,4 +1,5 @@
 ﻿using System.Data.Common;
+using Dapper;
 
 namespace CCS.Rosetta.Api.Projects;
 
@@ -18,6 +19,6 @@ public class ProjectRepository : IProjectRepository
 
     public Task<IEnumerable<Project>> GetAll()
     {
-        return Task.FromResult(Enumerable.Empty<Project>());
+        return _connection.QueryAsync<Project>("SELECT * FROM Projects;");
     }
 }

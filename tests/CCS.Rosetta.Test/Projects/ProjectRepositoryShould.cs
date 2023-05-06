@@ -36,8 +36,19 @@ public class ProjectRepositoryShould : IDisposable
     {
         await _connection.ExecuteAsync("INSERT INTO Projects ('Name', 'Description') VALUES ('my-project', 'A description.');");
         
-        IEnumerable<Project> result = await _repository.GetAll();
+        var result = await _repository.GetAll();
         
         result.Should().Contain(project => project.Name == "my-project" && project.Description == "A description.");
+    }
+
+    [Fact]
+    public async Task InsertAndReturnANewProject()
+    {
+        var project = new Project("my-project", "A description.");
+        
+        _repository.Add(project);
+        
+        var result = await _repository.GetAll();
+        result.Should().Contain(p => p.Name == project.Name && p.Description == project.Description);
     }
 }
