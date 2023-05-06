@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Tests", "03 - Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCS.Rosetta.Api", "src\CCS.Rosetta.Api\CCS.Rosetta.Api.csproj", "{48F2BB99-B61F-4EB7-A3E4-975F1078A300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS.Rosetta.Test", "tests\CSS.Rosetta.Test\CSS.Rosetta.Test.csproj", "{C3EAB091-AFA5-46C5-A2C3-847496EC96AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCS.Rosetta.Test", "tests\CCS.Rosetta.Test\CCS.Rosetta.Test.csproj", "{C3EAB091-AFA5-46C5-A2C3-847496EC96AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
