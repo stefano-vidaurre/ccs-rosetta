@@ -20,4 +20,10 @@ public class ProjectsController : ControllerBase
         
         await _repository.Add(project);
     }
+
+    [HttpGet]
+    public IEnumerable<ProjectReadDto> Get()
+    {
+        throw new NotImplementedException();
+    }
 }
