@@ -22,8 +22,10 @@ public class ProjectsController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<ProjectReadDto> Get()
+    public async Task<IEnumerable<ProjectReadDto>> Get()
     {
-        throw new NotImplementedException();
+        var projects = await _repository.GetAll();
+
+        return projects.Select(project => new ProjectReadDto { Name = project.Name, Description = project.Description });
     }
 }

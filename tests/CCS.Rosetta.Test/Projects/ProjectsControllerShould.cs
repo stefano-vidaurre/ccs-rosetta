@@ -26,21 +26,23 @@ public class ProjectsControllerShould
 
         await _controller.Post(request);
 
+        var expected = new Project("my-project", "A description.");
+        
         await _repository.Received().Add(Arg.Is<Project>(project =>
-            project.Name == "my-project" && project.Description == "A description."));
+            project.Name == expected.Name && project.Description == expected.Description));
     }
 
     [Fact]
-    public void ReturnAllProjects()
+    public async Task ReturnAllProjects()
     {
         _repository.GetAll().Returns(new List<Project>
         {
             new ("A name", "A description.")
         });
         
-        IEnumerable<ProjectReadDto> result = _controller.Get();
+        var result = await _controller.Get();
 
-        IEnumerable<ProjectReadDto> expected = new List<ProjectReadDto>
+        var expected = new List<ProjectReadDto>
         {
             new()
             {
