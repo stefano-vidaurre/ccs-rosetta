@@ -13,10 +13,8 @@ public class ProjectRepositoryShould : IDisposable
 
     public ProjectRepositoryShould()
     {
-        _connection = new SqliteConnection("Data Source=:memory:");
+        _connection = DataBaseTestConnection.CreateInMemoryConnection();
         _repository = new ProjectRepository(_connection);
-        _connection.Open();
-        _connection.Execute("CREATE TABLE IF NOT EXISTS Projects (Name VARCHAR(255) PRIMARY KEY, Description TEXT);");
     }
     
     public void Dispose()

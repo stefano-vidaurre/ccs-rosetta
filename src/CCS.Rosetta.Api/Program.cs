@@ -17,14 +17,6 @@ connection.Open();
 connection.Execute("CREATE TABLE IF NOT EXISTS Projects (Name VARCHAR(255) PRIMARY KEY, Description TEXT);");
 connection.Dispose();
 
-builder.Services.AddScoped<DbConnection, SqliteConnection>(_ =>
-{
-    var connection = new SqliteConnection("Data Source=./database.db");
-    connection.Open();
-    return connection;
-});
-builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

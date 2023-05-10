@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace CSS.Rosetta.Test.Projects;
 
-public class CreateProjectFeature : IClassFixture<WebApplicationFactory<Program>>
+public class CreateProjectFeature : IClassFixture<TestWebApplicationFactory<Program>>
 {
-    private readonly WebApplicationFactory<Program> _factory;
+    private readonly TestWebApplicationFactory<Program> _factory;
     private readonly HttpClient _client;
 
-    public CreateProjectFeature(WebApplicationFactory<Program> factory)
+    public CreateProjectFeature(TestWebApplicationFactory<Program> factory)
     {
         _factory = factory;
         _client = _factory.CreateClient();
