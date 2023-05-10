@@ -1,5 +1,6 @@
 using System.Data.Common;
 using CCS.Rosetta.Api.Projects;
+using CSS.Rosetta.Test;
 using Dapper;
 using Microsoft.Data.Sqlite;
 
@@ -12,10 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connection = new SqliteConnection("Data Source=./database.db");
-connection.Open();
-connection.Execute("CREATE TABLE IF NOT EXISTS Projects (Name VARCHAR(255) PRIMARY KEY, Description TEXT);");
-connection.Dispose();
+builder.Services.AddScoped<DbConnection>(_ => DataBaseConnection.CreateInFileConnection());
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
 var app = builder.Build();
 

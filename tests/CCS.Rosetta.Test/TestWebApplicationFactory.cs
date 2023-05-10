@@ -13,7 +13,7 @@ public class TestWebApplicationFactory<TProgram> : WebApplicationFactory<TProgra
     {
         builder.ConfigureServices(services =>
         {
-            services.AddSingleton<DbConnection>(container => DataBaseTestConnection.CreateInMemoryConnection());
+            services.AddSingleton<DbConnection>(_ => DataBaseConnection.CreateInMemoryConnection());
             services.AddSingleton<IProjectRepository, ProjectRepository>();
         });
     }

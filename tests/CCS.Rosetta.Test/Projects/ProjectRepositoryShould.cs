@@ -13,7 +13,7 @@ public class ProjectRepositoryShould : IDisposable
 
     public ProjectRepositoryShould()
     {
-        _connection = DataBaseTestConnection.CreateInMemoryConnection();
+        _connection = DataBaseConnection.CreateInMemoryConnection();
         _repository = new ProjectRepository(_connection);
     }
     
