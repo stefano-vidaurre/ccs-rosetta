@@ -10,9 +10,4 @@ public class Project
         Name = name;
         Description = description;
     }
-
-    public bool IsSame(Project project)
-    {
-        return Name == project.Name && Description == project.Description;
-    }
 }

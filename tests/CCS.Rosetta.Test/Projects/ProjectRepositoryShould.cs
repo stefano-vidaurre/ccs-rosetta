@@ -10,7 +10,6 @@ public class ProjectRepositoryShould : IDisposable
 {
     private readonly DbConnection _connection;
     private readonly IProjectRepository _repository;
-    private readonly Project _project;
 
     public ProjectRepositoryShould()
     {
@@ -18,7 +17,6 @@ public class ProjectRepositoryShould : IDisposable
         _repository = new ProjectRepository(_connection);
         _connection.Open();
         _connection.Execute("CREATE TABLE IF NOT EXISTS Projects (Name VARCHAR(255) PRIMARY KEY, Description TEXT);");
-        _project = new Project("my-project", "A description.");
     }
     
     public void Dispose()
@@ -36,19 +34,22 @@ public class ProjectRepositoryShould : IDisposable
     [Fact]
     public async Task ReturnAListWithInsertedProject()
     {
-        await _connection.ExecuteAsync($"INSERT INTO Projects ('Name', 'Description') VALUES ('{_project.Name}', '{_project.Description}');");
+        var project = new Project("my-project", "A description.");
+        await _connection.ExecuteAsync($"INSERT INTO Projects ('Name', 'Description') VALUES ('{project.Name}', '{project.Description}');");
         
         var result = await _repository.GetAll();
         
-        result.Should().Contain(p => p.IsSame(_project));
+        result.Should().ContainEquivalentOf(project);
     }
 
     [Fact]
     public async Task InsertAndReturnANewProject()
     {
-        await _repository.Add(_project);
+        var project = new Project("my-project", "A description.");
+
+        await _repository.Add(project);
         
         var result = await _repository.GetAll();
-        result.Should().Contain(p => p.IsSame(_project));
+        result.Should().ContainEquivalentOf(project);
     }
 }
