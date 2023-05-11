@@ -1,8 +1,6 @@
 using System.Data.Common;
 using CCS.Rosetta.Api.Projects;
 using CSS.Rosetta.Test;
-using Dapper;
-using Microsoft.Data.Sqlite;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,5 +33,7 @@ app.Run();
 
 namespace CCS.Rosetta.Api
 {
-    public partial class Program { }
+    public class Program
+    {
+    }
 }

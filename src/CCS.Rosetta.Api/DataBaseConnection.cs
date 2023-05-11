@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
-using Microsoft.Data.Sqlite;
 using Dapper;
+using Microsoft.Data.Sqlite;
 
 namespace CSS.Rosetta.Test;
 

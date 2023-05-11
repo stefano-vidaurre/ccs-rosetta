@@ -2,15 +2,14 @@ using System.Text;
 using System.Text.Json;
 using CCS.Rosetta.Api;
 using CCS.Rosetta.Api.Projects;
-using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace CSS.Rosetta.Test.Projects;
 
 [UsesVerify]
 public class CreateProjectFeature : IClassFixture<TestWebApplicationFactory<Program>>
 {
-    private readonly TestWebApplicationFactory<Program> _factory;
     private readonly HttpClient _client;
+    private readonly TestWebApplicationFactory<Program> _factory;
 
     public CreateProjectFeature(TestWebApplicationFactory<Program> factory)
     {
@@ -30,7 +29,7 @@ public class CreateProjectFeature : IClassFixture<TestWebApplicationFactory<Prog
 
     private static ProjectCreateDto GivenASetOfValidProperties()
     {
-        return new ProjectCreateDto()
+        return new ProjectCreateDto
         {
             Name = "my-project",
             Description = "A description."
@@ -39,7 +38,7 @@ public class CreateProjectFeature : IClassFixture<TestWebApplicationFactory<Prog
 
     private async Task WhenCreateANewProject(ProjectCreateDto projectProperties)
     {
-        var json = JsonSerializer.Serialize(projectProperties);
+        string json = JsonSerializer.Serialize(projectProperties);
         var request = new StringContent(json, Encoding.UTF8, "application/json");
         var response = await _client.PostAsync("/", request);
         response.EnsureSuccessStatusCode();

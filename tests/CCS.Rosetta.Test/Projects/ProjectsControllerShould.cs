@@ -6,8 +6,8 @@ namespace CSS.Rosetta.Test.Projects;
 
 public class ProjectsControllerShould
 {
-    private readonly IProjectRepository _repository;
     private readonly ProjectsController _controller;
+    private readonly IProjectRepository _repository;
 
     public ProjectsControllerShould()
     {
@@ -18,7 +18,7 @@ public class ProjectsControllerShould
     [Fact]
     public async Task CreateANewProject()
     {
-        var request = new ProjectCreateDto()
+        var request = new ProjectCreateDto
         {
             Name = "my-project",
             Description = "A description."
@@ -37,7 +37,7 @@ public class ProjectsControllerShould
     {
         _repository.GetAll().Returns(new List<Project>
         {
-            new ("A name", "A description.")
+            new("A name", "A description.")
         });
 
         var result = await _controller.Get();

@@ -14,7 +14,8 @@ public class ProjectRepository : IProjectRepository
 
     public Task Add(Project project)
     {
-        return _connection.ExecuteAsync($"INSERT INTO Projects ('Name', 'Description') VALUES ('{project.Name}', '{project.Description}');");
+        return _connection.ExecuteAsync(
+            $"INSERT INTO Projects ('Name', 'Description') VALUES ('{project.Name}', '{project.Description}');");
     }
 
     public Task<IEnumerable<Project>> GetAll()
