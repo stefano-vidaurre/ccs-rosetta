@@ -18,7 +18,7 @@ public class ProjectsControllerShould
     [Fact]
     public async Task CreateANewProject()
     {
-        var request = new ProjectCrateDto()
+        var request = new ProjectCreateDto()
         {
             Name = "my-project",
             Description = "A description."

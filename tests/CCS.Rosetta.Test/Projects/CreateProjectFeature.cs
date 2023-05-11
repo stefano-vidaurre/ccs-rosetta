@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using CCS.Rosetta.Api;
+using CCS.Rosetta.Api.Projects;
 using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace CSS.Rosetta.Test.Projects;
@@ -20,26 +21,26 @@ public class CreateProjectFeature : IClassFixture<TestWebApplicationFactory<Prog
     [Fact]
     public async Task CreateProjectWithValidProperties()
     {
-        string projectProperties = GivenASetOfValidProperties();
+        var projectProperties = GivenASetOfValidProperties();
 
         await WhenCreateANewProject(projectProperties);
 
         await ThenRetrieveTheProjectsListWithTheNewProject();
     }
 
-    private static string GivenASetOfValidProperties()
+    private static ProjectCreateDto GivenASetOfValidProperties()
     {
-        object properties = new
+        return new ProjectCreateDto()
         {
             Name = "my-project",
             Description = "A description."
         };
-        return JsonSerializer.Serialize(properties);
     }
 
-    private async Task WhenCreateANewProject(string projectProperties)
+    private async Task WhenCreateANewProject(ProjectCreateDto projectProperties)
     {
-        var request = new StringContent(projectProperties, Encoding.UTF8, "application/json");
+        var json = JsonSerializer.Serialize(projectProperties);
+        var request = new StringContent(json, Encoding.UTF8, "application/json");
         var response = await _client.PostAsync("/", request);
         response.EnsureSuccessStatusCode();
     }
