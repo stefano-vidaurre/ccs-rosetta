@@ -8,20 +8,21 @@ public class DataBaseConnection : SqliteConnection
 {
     private DataBaseConnection(string connectionString) : base(connectionString)
     {
-        
     }
 
     public static DbConnection CreateInMemoryConnection()
     {
-        DbConnection connection = new DataBaseConnection("Data Source=:memory:");
-        connection.Open();
-        connection.Execute("CREATE TABLE IF NOT EXISTS Projects (Name VARCHAR(255) PRIMARY KEY, Description TEXT);");
-        return connection;
+        return CreateConnection("Data Source=:memory:");
     }
-    
+
     public static DbConnection CreateInFileConnection()
     {
-        DbConnection connection = new DataBaseConnection("Data Source=DevelopDB.db;Pooling=False;");
+        return CreateConnection("Data Source=DevelopDB.db;Pooling=False;");
+    }
+
+    private static DbConnection CreateConnection(string connectionString)
+    {
+        DbConnection connection = new DataBaseConnection(connectionString);
         connection.Open();
         connection.Execute("CREATE TABLE IF NOT EXISTS Projects (Name VARCHAR(255) PRIMARY KEY, Description TEXT);");
         return connection;

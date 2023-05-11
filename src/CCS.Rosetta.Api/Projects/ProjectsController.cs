@@ -16,8 +16,8 @@ public class ProjectsController : ControllerBase
     [HttpPost]
     public async Task Post(ProjectCrateDto request)
     {
-        var project = new Project(request.Name, request.Description);
-        
+        var project = new Project(request!.Name, request.Description);
+
         await _repository.Add(project);
     }
 

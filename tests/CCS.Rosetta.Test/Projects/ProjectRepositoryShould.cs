@@ -16,10 +16,11 @@ public class ProjectRepositoryShould : IDisposable
         _connection = DataBaseConnection.CreateInMemoryConnection();
         _repository = new ProjectRepository(_connection);
     }
-    
+
     public void Dispose()
     {
         _connection.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     [Fact]
@@ -34,9 +35,9 @@ public class ProjectRepositoryShould : IDisposable
     {
         var project = new Project("my-project", "A description.");
         await _connection.ExecuteAsync($"INSERT INTO Projects ('Name', 'Description') VALUES ('{project.Name}', '{project.Description}');");
-        
+
         var result = await _repository.GetAll();
-        
+
         result.Should().ContainEquivalentOf(project);
     }
 
@@ -46,7 +47,7 @@ public class ProjectRepositoryShould : IDisposable
         var project = new Project("my-project", "A description.");
 
         await _repository.Add(project);
-        
+
         var result = await _repository.GetAll();
         result.Should().ContainEquivalentOf(project);
     }

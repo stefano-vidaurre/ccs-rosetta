@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace CSS.Rosetta.Test.Projects;
 
+[UsesVerify]
 public class CreateProjectFeature : IClassFixture<TestWebApplicationFactory<Program>>
 {
     private readonly TestWebApplicationFactory<Program> _factory;
@@ -20,13 +21,13 @@ public class CreateProjectFeature : IClassFixture<TestWebApplicationFactory<Prog
     public async Task CreateProjectWithValidProperties()
     {
         string projectProperties = GivenASetOfValidProperties();
-        
+
         await WhenCreateANewProject(projectProperties);
-        
+
         await ThenRetrieveTheProjectsListWithTheNewProject();
     }
 
-    private string GivenASetOfValidProperties()
+    private static string GivenASetOfValidProperties()
     {
         object properties = new
         {
@@ -48,6 +49,6 @@ public class CreateProjectFeature : IClassFixture<TestWebApplicationFactory<Prog
         var response = await _client.GetAsync("/");
         response.EnsureSuccessStatusCode();
         string json = await response.Content.ReadAsStringAsync();
-        Verify(json);
+        await Verify(json);
     }
 }
