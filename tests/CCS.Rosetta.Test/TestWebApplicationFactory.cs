@@ -3,6 +3,7 @@ using CCS.Rosetta.Api.Projects;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CSS.Rosetta.Test;
 
@@ -13,8 +14,8 @@ public class TestWebApplicationFactory<TProgram> : WebApplicationFactory<TProgra
     {
         builder.ConfigureServices(services =>
         {
+            services.RemoveAll(typeof(DbConnection));
             services.AddSingleton<DbConnection>(_ => DataBaseConnection.CreateInMemoryConnection());
-            services.AddSingleton<IProjectRepository, ProjectRepository>();
         });
     }
 }
