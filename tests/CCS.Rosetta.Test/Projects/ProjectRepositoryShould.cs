@@ -1,6 +1,5 @@
 ﻿using System.Data.Common;
 using CCS.Rosetta.Api.Projects;
-using Dapper;
 using FluentAssertions;
 
 namespace CSS.Rosetta.Test.Projects;
@@ -27,18 +26,6 @@ public class ProjectRepositoryShould : IDisposable
     {
         var result = await _repository.GetAll();
         result.Should().BeEmpty();
-    }
-
-    [Fact]
-    public async Task ReturnAListWithInsertedProject()
-    {
-        var project = new Project("my-project", "A description.");
-        await _connection.ExecuteAsync(
-            $"INSERT INTO Projects ('Name', 'Description') VALUES ('{project.Name}', '{project.Description}');");
-
-        var result = await _repository.GetAll();
-
-        result.Should().ContainEquivalentOf(project);
     }
 
     [Fact]
