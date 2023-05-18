@@ -77,4 +77,12 @@ public class NameShould
 
         action.Should().NotThrow();
     }
+    
+    [Fact]
+    public void NotBeConstructedWhenValueStartsWithBarSymbol()
+    {
+        Func<Name> action = () => new Name("_aws");
+        
+        action.Should().Throw<FormatException>();
+    }
 }
