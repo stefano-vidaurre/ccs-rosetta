@@ -43,7 +43,7 @@ public class ProjectsControllerShould : IDisposable
     [Fact]
     public async Task ReturnAllProjects()
     {
-        _repository.Add(new Project(new Name("A name"), "A description."));
+        _repository.Add(new Project(new Name("A_name"), "A description."));
 
         IEnumerable<ProjectReadDto> result = await _controller.Get();
 
@@ -51,7 +51,7 @@ public class ProjectsControllerShould : IDisposable
         {
             new()
             {
-                Name = "A name",
+                Name = "A_name",
                 Description = "A description."
             }
         };
