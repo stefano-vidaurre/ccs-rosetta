@@ -27,6 +27,6 @@ public class ProjectsController : ControllerBase
         var projects = await _repository.GetAll();
 
         return projects.Select(project => new ProjectReadDto
-            { Name = project.Name, Description = project.Description });
+            { Name = project.Name.Value, Description = project.Description });
     }
 }

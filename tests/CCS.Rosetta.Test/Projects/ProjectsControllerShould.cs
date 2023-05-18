@@ -29,7 +29,7 @@ public class ProjectsControllerShould
         var expected = new Project(new Name("my-project"), "A description.");
 
         await _repository.Received().Add(Arg.Is<Project>(project =>
-            project.Name == expected.Name && project.Description == expected.Description));
+            project.Name.Value == expected.Name.Value && project.Description == expected.Description));
     }
 
     [Fact]
