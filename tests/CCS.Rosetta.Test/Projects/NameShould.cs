@@ -37,10 +37,14 @@ public class NameShould
         action.Should().Throw<FormatException>();
     }
 
-    [Fact]
-    public void NotBeConstructedWhenValueContainsSymbols()
+    [Theory]
+    [InlineData("aws*")]
+    [InlineData("aws$")]
+    [InlineData("aws.")]
+    [InlineData("aws@")]
+    public void NotBeConstructedWhenValueContainsSymbols(string value)
     {
-        Func<Name> action = () => new Name("aws*");
+        Func<Name> action = () => new Name(value);
         
         action.Should().Throw<FormatException>();
     }
