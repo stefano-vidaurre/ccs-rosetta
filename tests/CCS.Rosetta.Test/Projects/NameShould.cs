@@ -21,10 +21,13 @@ public class NameShould
         action.Should().Throw<ArgumentException>();
     }
 
-    [Fact]
-    public void NotBeConstructedWhenValueLengthIsLessThanFour()
+    [Theory]
+    [InlineData("a")]
+    [InlineData("aw")]
+    [InlineData("aws")]
+    public void NotBeConstructedWhenValueLengthIsLessThanFour(string value)
     {
-        Func<Name> action = () => new Name("aws");
+        Func<Name> action = () => new Name(value);
         
         action.Should().Throw<FormatException>();
     }
@@ -51,5 +54,13 @@ public class NameShould
         Func<Name> action = () => new Name(value);
         
         action.Should().Throw<FormatException>();
+    }
+
+    [Fact]
+    public void BeConstructedWhenValueContainsBarSymbol()
+    {
+        Func<Name> action = () => new Name("aws-");
+
+        action.Should().NotThrow();
     }
 }
