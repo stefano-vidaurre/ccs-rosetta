@@ -20,4 +20,12 @@ public class NameShould
         
         action.Should().Throw<ArgumentException>();
     }
+
+    [Fact]
+    public void NotBeConstructedWhenValueLengthIsLessThanFour()
+    {
+        Func<Name> action = () => new Name("aws");
+        
+        action.Should().Throw<FormatException>();
+    }
 }
