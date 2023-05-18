@@ -23,7 +23,7 @@ public class Name
 
     private static bool HasInvalidFormat(string name)
     {
-        Regex regex = new Regex(@"\w{4,}");
+        Regex regex = new(@"[\w\-]{4,}");
         return !regex.IsMatch(name);
     }
 }
