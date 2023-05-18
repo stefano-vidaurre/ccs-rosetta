@@ -11,7 +11,7 @@ public class Name
             throw new ArgumentException("Value cannot be null or empty.", nameof(name));
         }
 
-        if (name.Length < 4 || name.Contains(' '))
+        if (name.Length < 4 || name.Contains(' ') || name.Contains('*'))
         {
             throw new FormatException("Name format is not valid");
         }
