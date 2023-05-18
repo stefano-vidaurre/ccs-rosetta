@@ -30,7 +30,7 @@ public class NameShould
     }
 
     [Fact]
-    public void NotBeConstructedWhenValueStartsWithWhiteSpace()
+    public void NotBeConstructedWhenValueContainsWhiteSpaces()
     {
         Func<Name> action = () => new Name(" aws");
         
