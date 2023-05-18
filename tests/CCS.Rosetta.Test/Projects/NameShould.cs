@@ -56,10 +56,24 @@ public class NameShould
         action.Should().Throw<FormatException>();
     }
 
-    [Fact]
-    public void BeConstructedWhenValueContainsBarSymbol()
+    [Theory]
+    [InlineData("a-ws")]
+    [InlineData("aw-s")]
+    [InlineData("aws-")]
+    public void BeConstructedWhenValueContainsBarSymbol(string value)
     {
-        Func<Name> action = () => new Name("aws-");
+        Func<Name> action = () => new Name(value);
+
+        action.Should().NotThrow();
+    }
+    
+    [Theory]
+    [InlineData("a_ws")]
+    [InlineData("aw_s")]
+    [InlineData("aws_")]
+    public void BeConstructedWhenValueContainsLowBarSymbol(string value)
+    {
+        Func<Name> action = () => new Name(value);
 
         action.Should().NotThrow();
     }
