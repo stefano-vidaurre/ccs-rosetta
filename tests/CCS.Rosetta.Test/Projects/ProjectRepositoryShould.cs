@@ -24,18 +24,18 @@ public class ProjectRepositoryShould : IDisposable
     [Fact]
     public async Task ReturnAEmptyList()
     {
-        var result = await _repository.GetAll();
+        IEnumerable<Project> result = await _repository.GetAll();
         result.Should().BeEmpty();
     }
 
     [Fact]
     public async Task InsertAndReturnANewProject()
     {
-        var project = new Project(new Name("my-project"), "A description.");
+        Project? project = new(new Name("my-project"), "A description.");
 
         await _repository.Add(project);
 
-        var result = await _repository.GetAll();
+        IEnumerable<Project> result = await _repository.GetAll();
         result.Should().ContainEquivalentOf(project);
     }
 }

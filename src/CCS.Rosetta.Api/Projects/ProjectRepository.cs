@@ -20,7 +20,7 @@ public class ProjectRepository : IProjectRepository
 
     public async Task<IEnumerable<Project>> GetAll()
     {
-        var data = await _connection.QueryAsync<dynamic>("SELECT * FROM Projects;");
-        return data.Select(d => new Project(new Name(d.Name), d.Description));
+        IEnumerable<dynamic> results = await _connection.QueryAsync<dynamic>("SELECT * FROM Projects;");
+        return results.Select(result => new Project(new Name(result.Name), result.Description));
     }
 }

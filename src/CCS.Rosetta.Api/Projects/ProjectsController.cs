@@ -16,7 +16,7 @@ public class ProjectsController : ControllerBase
     [HttpPost]
     public async Task Post(ProjectCreateDto request)
     {
-        var project = new Project(new Name(request!.Name), request.Description);
+        Project project = new(new Name(request.Name), request.Description);
 
         await _repository.Add(project);
     }
@@ -24,7 +24,7 @@ public class ProjectsController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<ProjectReadDto>> Get()
     {
-        var projects = await _repository.GetAll();
+        IEnumerable<Project> projects = await _repository.GetAll();
 
         return projects.Select(project => new ProjectReadDto
             { Name = project.Name.Value, Description = project.Description });

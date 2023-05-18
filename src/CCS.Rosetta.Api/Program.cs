@@ -2,7 +2,7 @@ using System.Data.Common;
 using CCS.Rosetta.Api.Projects;
 using CSS.Rosetta.Test;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<DbConnection>(_ => DataBaseConnection.CreateInFileConnection());
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

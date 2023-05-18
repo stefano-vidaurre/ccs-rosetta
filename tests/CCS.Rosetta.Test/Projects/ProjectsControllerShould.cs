@@ -1,24 +1,32 @@
-﻿using CCS.Rosetta.Api.Projects;
+﻿using System.Data.Common;
+using CCS.Rosetta.Api.Projects;
 using FluentAssertions;
-using NSubstitute;
 
 namespace CSS.Rosetta.Test.Projects;
 
-public class ProjectsControllerShould
+public class ProjectsControllerShould : IDisposable
 {
     private readonly ProjectsController _controller;
     private readonly IProjectRepository _repository;
+    private readonly DbConnection _connection;
 
     public ProjectsControllerShould()
     {
-        _repository = Substitute.For<IProjectRepository>();
+        _connection = DataBaseConnection.CreateInMemoryConnection();
+        _repository = new ProjectRepository(_connection);
         _controller = new ProjectsController(_repository);
+    }
+
+    public void Dispose()
+    {
+        _connection.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     [Fact]
     public async Task CreateANewProject()
     {
-        var request = new ProjectCreateDto
+        ProjectCreateDto request = new()
         {
             Name = "my-project",
             Description = "A description."
@@ -26,23 +34,20 @@ public class ProjectsControllerShould
 
         await _controller.Post(request);
 
-        var expected = new Project(new Name("my-project"), "A description.");
+        Project expected = new(new Name("my-project"), "A description.");
 
-        await _repository.Received().Add(Arg.Is<Project>(project =>
-            project.Name.Value == expected.Name.Value && project.Description == expected.Description));
+        IEnumerable<Project> result = await _repository.GetAll();
+        result.Should().ContainEquivalentOf(expected);
     }
 
     [Fact]
     public async Task ReturnAllProjects()
     {
-        _repository.GetAll().Returns(new List<Project>
-        {
-            new(new Name("A name"), "A description.")
-        });
+        _repository.Add(new Project(new Name("A name"), "A description."));
 
-        var result = await _controller.Get();
+        IEnumerable<ProjectReadDto> result = await _controller.Get();
 
-        var expected = new List<ProjectReadDto>
+        List<ProjectReadDto> expected = new()
         {
             new()
             {
