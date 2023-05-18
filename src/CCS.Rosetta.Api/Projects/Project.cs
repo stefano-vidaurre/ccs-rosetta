@@ -2,12 +2,14 @@
 
 public class Project
 {
-    public Project(string name, string? description)
+    private readonly Name _name;
+
+    public Project(Name name, string? description)
     {
-        Name = name;
+        _name = name;
         Description = description;
     }
 
-    public string Name { get; }
+    public string Name => _name.Value;
     public string? Description { get; }
 }

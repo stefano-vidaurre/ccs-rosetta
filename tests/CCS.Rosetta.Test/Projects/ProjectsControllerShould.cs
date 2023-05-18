@@ -26,7 +26,7 @@ public class ProjectsControllerShould
 
         await _controller.Post(request);
 
-        var expected = new Project("my-project", "A description.");
+        var expected = new Project(new Name("my-project"), "A description.");
 
         await _repository.Received().Add(Arg.Is<Project>(project =>
             project.Name == expected.Name && project.Description == expected.Description));
@@ -37,7 +37,7 @@ public class ProjectsControllerShould
     {
         _repository.GetAll().Returns(new List<Project>
         {
-            new("A name", "A description.")
+            new(new Name("A name"), "A description.")
         });
 
         var result = await _controller.Get();

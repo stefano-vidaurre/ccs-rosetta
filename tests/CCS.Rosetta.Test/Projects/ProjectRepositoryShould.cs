@@ -31,7 +31,7 @@ public class ProjectRepositoryShould : IDisposable
     [Fact]
     public async Task InsertAndReturnANewProject()
     {
-        var project = new Project("my-project", "A description.");
+        var project = new Project(new Name("my-project"), "A description.");
 
         await _repository.Add(project);
 

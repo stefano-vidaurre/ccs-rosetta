@@ -18,8 +18,9 @@ public class ProjectRepository : IProjectRepository
             $"INSERT INTO Projects ('Name', 'Description') VALUES ('{project.Name}', '{project.Description}');");
     }
 
-    public Task<IEnumerable<Project>> GetAll()
+    public async Task<IEnumerable<Project>> GetAll()
     {
-        return _connection.QueryAsync<Project>("SELECT * FROM Projects;");
+        var data = await _connection.QueryAsync<dynamic>("SELECT * FROM Projects;");
+        return data.Select(d => new Project(new Name(d.Name), d.Description));
     }
 }
