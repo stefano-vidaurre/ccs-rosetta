@@ -28,4 +28,12 @@ public class NameShould
         
         action.Should().Throw<FormatException>();
     }
+
+    [Fact]
+    public void NotBeConstructedWhenValueStartsWithWhiteSpace()
+    {
+        Func<Name> action = () => new Name(" aws");
+        
+        action.Should().Throw<FormatException>();
+    }
 }
