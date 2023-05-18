@@ -12,4 +12,12 @@ public class NameShould
         
         action.Should().Throw<ArgumentException>();
     }
+    
+    [Fact]
+    public void NotBeConstructedWhenValueIsEmpty()
+    {
+        Func<Name> action = () => new Name(string.Empty);
+        
+        action.Should().Throw<ArgumentException>();
+    }
 }
