@@ -1,4 +1,6 @@
-﻿namespace CCS.Rosetta.Api.Projects;
+﻿using System.Text.RegularExpressions;
+
+namespace CCS.Rosetta.Api.Projects;
 
 public class Name
 {
@@ -11,7 +13,7 @@ public class Name
             throw new ArgumentException("Value cannot be null or empty.", nameof(name));
         }
 
-        if (HasValidFormat(name))
+        if (HasInvalidFormat(name))
         {
             throw new FormatException("Name format is not valid");
         }
@@ -19,8 +21,9 @@ public class Name
         Value = name;
     }
 
-    private static bool HasValidFormat(string name)
+    private static bool HasInvalidFormat(string name)
     {
-        return name.Length < 4 || name.Contains(' ') || name.Contains('*');
+        Regex regex = new Regex(@"\w{4,}");
+        return !regex.IsMatch(name);
     }
 }
