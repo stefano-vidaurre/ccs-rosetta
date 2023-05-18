@@ -81,7 +81,7 @@ public class NameShould
     [Fact]
     public void NotBeConstructedWhenValueStartsWithBarSymbol()
     {
-        Func<Name> action = () => new Name("_aws");
+        Func<Name> action = () => new Name("-aws");
         
         action.Should().Throw<FormatException>();
     }
